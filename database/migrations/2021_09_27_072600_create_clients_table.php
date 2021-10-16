@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('body')->nullable();
-            $table->string('address');
+            $table->longText('address');
             $table->timestamps();
         });
     }

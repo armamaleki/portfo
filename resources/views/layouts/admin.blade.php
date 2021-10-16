@@ -355,6 +355,8 @@
             success: function(file, response)
             {
                 console.log(response);
+                $('#gallery_ids').val(1);
+
             },
             error: function(file, response)
             {

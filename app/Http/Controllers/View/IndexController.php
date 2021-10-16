@@ -36,24 +36,21 @@ class IndexController extends Controller
         $services = Service::with('user')->paginate(15);
         $posts = Post::with('user')->paginate(15);
         $user = User::latest()->first();
-        return view('index', compact('services', 'client', 'cv', 'design', 'posts', 'user'));
+        $title = 'تایتل صفحه ';
+        return view('index', compact('services', 'client', 'cv', 'design', 'posts', 'user', 'title'));
     }
-
 
 
     public function show($id)
     {
+
         $post = Post::with([
             'comments' => function ($q) {
                 $q->where('status', '1')->orderBy('id', 'desc');
             }
         ])->where('slug', $id)->firstOrFail();
-
         return view('post', compact('post',));
     }
-
-
-
 
 
     public function postComment(Request $request)

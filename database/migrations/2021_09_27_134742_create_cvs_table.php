@@ -17,7 +17,7 @@ class CreateCvsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('company');
-            $table->string('body');
+            $table->longText('body');
             $table->string('from');
             $table->string('to');
             $table->string('slug');

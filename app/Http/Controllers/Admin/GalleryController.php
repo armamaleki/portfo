@@ -41,15 +41,19 @@ class GalleryController extends Controller
 
       if ($request->client_id){
           $validated=Client::find($request->client_id);
+
           $validated = $request->validate([
               'file' => 'required',
           ]);
 
+//dd($validated);
           $image = $request->file('file');
           $new_name= time().'-'.$image->getClientOriginalName();
           $image->move(public_path('img'),$new_name);
           $validated['file']=$new_name;
-          Gallery::create($validated);
+          $gallery = Gallery::create($validated);
+
+          return $gallery;
 
       }
     }

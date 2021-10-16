@@ -112,15 +112,15 @@
                                     <div class="author-img">
                                         <img src="{{asset('img/blog/img-1.jpg')}}" alt="">
                                     </div>
-                                    <div class="comment-text">
-
-
-                                        <h6 class="author">Jane Doe</h6>
-                                        <span class="date">June 10, 2018 at 5:39 am</span>
-                                        <p>Deep v cliche lomo biodiesel Neutra selfies. Shorts fixie consequat
-                                            flexitarian
-                                            four loko </p>
-                                    </div>
+                                   @foreach($post->comments as $comment)
+                                        <div class="comment-text">
+                                            <h6 class="author"></h6>
+                                            <span class="date">June 10, 2018 at 5:39 am</span>
+                                            <p>Deep v cliche lomo biodiesel Neutra selfies. Shorts fixie consequat
+                                                flexitarian
+                                                four loko </p>
+                                        </div>
+                                   @endforeach
 
                                 </li>
                             </ul>
