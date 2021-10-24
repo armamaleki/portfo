@@ -16,8 +16,8 @@ class CvController extends Controller
      */
     public function index()
     {
-        $user=Auth::user();
-        $cv=Cv::paginate(10);
+        $user = Auth::user();
+        $cv = Cv::paginate(10);
         return view('admin.cv.index', compact('user', 'cv'));
     }
 
@@ -28,34 +28,35 @@ class CvController extends Controller
      */
     public function create()
     {
-        $user=Auth::user();
+        $user = Auth::user();
         return view('admin.cv.create', compact('user'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $data=$request->validate([
-            'title'=>'required',
-            'from'=>'required',
-            'to'=>'required',
-            'company'=>'required',
-            'body'=>'required',
-            'slug'=>'required',
+        $data = $request->validate([
+            'title' => 'required',
+            'from' => 'required|date_format:Y',
+            'to' => 'required|date_format:Y',
+            'company' => 'required',
+            'body' => 'required',
+            'slug' => 'required|url',
         ]);
-        $val=Cv::create($data);
-        return back();
+        $val = Cv::create($data);
+        return redirect()->route('cv.edit', $val);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,46 +67,47 @@ class CvController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $user=Auth::user();
-        $cv=Cv::find($id);
+        $user = Auth::user();
+        $cv = Cv::find($id);
 
-        return view('admin.cv.edit', compact('user','cv'));
+        return view('admin.cv.edit', compact('user', 'cv'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $data=$request->validate([
-            'title'=>'required',
-            'from'=>'required',
-            'to'=>'required',
-            'company'=>'required',
-            'body'=>'required',
-            'slug'=>'required',
+        $data = $request->validate([
+            'title' => 'required',
+            'from' => 'required|date_format:Y',
+            'to' => 'required|date_format:Y',
+            'company' => 'required',
+            'body' => 'required',
+            'slug' => 'required|url',
         ]);
-        $val=Cv::find($id)->update($data);
+        $val = Cv::find($id)->update($data);
         return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $cvs = Cv::find($id)->delete();
+return back();
     }
 }

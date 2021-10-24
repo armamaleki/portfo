@@ -18,39 +18,39 @@
                                 <label class="control-label col-sm-2">مقدار زمان فعالیت </label>
                                 <div class="col-sm-10">
                                     <div class="input-daterange input-group" id="date-range">
-                                        <input type="text" placeholder="شروع فعالیت " class="form-control" name="from">
+                                        <input type="text" placeholder="شروع فعالیت " value="{{old('from')}}" class="form-control" name="from">
                                         <span class="input-group-addon bg-primary b-0 text-white">تا</span>
-                                        <input type="text" placeholder="پایان فعالیت" class="form-control" name="to">
+                                        <input type="text" placeholder="پایان فعالیت" value="{{old('to')}}" class="form-control" name="to">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">تایتل</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="title" class="form-control" placeholder="تایتل">
+                                        <input type="text" name="title" value="{{old('title')}}" class="form-control" placeholder="تایتل">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">نام شرکت</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="company" class="form-control" placeholder="نام شرکت ">
+                                        <input type="text" name="company" class="form-control" value="{{old('company')}}" placeholder="نام شرکت ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">ادرس اینترنتی</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="slug" class="form-control" placeholder="ادرس اینترنتی شرکت">
+                                        <input type="text" name="slug" class="form-control " value="{{old('slug')}}" placeholder="ادرس اینترنتی شرکت">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">توضیحات کار</label>
                                     <div class="col-md-10">
-                                        <textarea id="elm1" name="body" class="form-control" placeholder="توضیحات....." rows="5"></textarea>
+                                        <textarea id="elm1" name="body" class="form-control" placeholder="توضیحات....." rows="5">{{old('body')}}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-block btn-xs btn-purple waves-effect waves-light">Block Button</button>
+                                        <button type="submit" class="btn btn-block btn-xs btn-purple waves-effect waves-light">ارسال</button>
                                     </div>
                                 </div>
                             </div>

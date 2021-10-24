@@ -13,7 +13,7 @@ class Gallery extends Model
     ];
 
 
-    public function gallryable()
+    public function galleryable()
     {
         return $this->morphTo();
     }

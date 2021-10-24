@@ -9,7 +9,7 @@
     <meta name="keywords" content="vcard, resume, personal, portfolio, cv, card, responsive"/>
     <meta name="description" content="vCard / Resume / Personal Template"/>
     <meta name="author" content="cosmos-themes"/>
-    <link rel="icon" type="image/png" href="{{asset('img/profile-img.jpg')}}" />
+    <link rel="icon" type="image/png" href="{{asset('assets/img/profile')}}/{{cache()->get('user')->avatar}}" />
 
     <!--Page Title-->
     <title>
@@ -21,7 +21,7 @@
     <!--Main Styles Css-->
     <link rel="stylesheet" href="{{asset('css/style-dark.css')}}">
     <link rel="stylesheet" href="{{asset('css/plugins/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/plugins/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{asset('css/plugins/all.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('fonts/iranyekanwebblack.ttf')}}">
     <link rel="stylesheet" href="{{asset('fonts/iranyekanwebblack.woff')}}">

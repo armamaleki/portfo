@@ -8,7 +8,7 @@
                     <div class="col-sm-6">
                         <div class="m-b-30">
                             <a href="{{route('cv.create')}}" id="addToTable" class="btn btn-primary waves-effect waves-light">اضافه کردن رزومه  <i
-                                    class="fa fa-plus"></i></a>
+                                    class="fa-solid fa-plus-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -48,8 +48,12 @@
                                             <td>{{$c->company}}</td>
                                             <td>{{$c->from}}-{{$c->to}}</td>
                                             <td class="actions">
-                                                <a href="{{route('cv.edit',$c->id)}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <a href="{{route('cv.edit',$c->id)}}" class="on-default edit-row"><i class="fa-solid fa-pen"></i></a>
+                                                <a onclick="getElementById('cv-id-{{$c->id}}').submit()" class="on-default remove-row"><i class="fa-solid fa-trash-can-list"></i></a>
+                                                <form method="post" action="{{route('cv.destroy',$c->id)}}" id="cv-id-{{$c->id}}">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

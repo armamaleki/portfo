@@ -33,29 +33,36 @@ class GalleryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
+    private function uploadImage($file)
+    {
+        $new_name = time() . '-' . $file->getClientOriginalName();
+        $file->move(public_path('img'), $new_name);
+        return $new_name;
+    }
+
     public function store(Request $request)
     {
-//        dd($request->toArray());
+        if ($request->client_id) {
+            $client = Client::find($request->client_id);
 
-      if ($request->client_id){
-          $validated=Client::find($request->client_id);
+            $validated = $request->validate([
+                'file' => 'required',
+            ]);
 
-          $validated = $request->validate([
-              'file' => 'required',
-          ]);
 
-//dd($validated);
-          $image = $request->file('file');
-          $new_name= time().'-'.$image->getClientOriginalName();
-          $image->move(public_path('img'),$new_name);
-          $validated['file']=$new_name;
-          $gallery = Gallery::create($validated);
+            $fileName = $this->uploadImage($request->file('file'));
 
-          return $gallery;
+            $client->galleries()->create([
+                'file' => $fileName
+            ]);
 
-      }
+            return response()->json([
+                'msg' => 'عکس با موفقیت اپلود شد'
+            ]);
+
+        }
     }
 
     /**

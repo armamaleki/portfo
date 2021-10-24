@@ -17,9 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $title = 'صفحه ادمیین';
-        $user =Auth::user();
-        $comment =User::with('comments')->get();
-        return view('admin.user.index', compact('user', 'title','comment'));
+        $user = Auth::user();
+        $comment = User::with('comments')->get();
+        return view('admin.user.index', compact('user', 'title', 'comment'));
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -74,22 +74,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request->toArray());
 
         $data = $request->validate([
             'name' => 'required|max:250',
             'lastname' => 'required',
-            'residence' => 'nullable',
+            'residence' => 'required',
             'address' => 'required',
-            'email' => 'required',
+            'email' => 'required|email:rfc,dns',
             'about' => 'required',
-            'avatar' => 'nullable',
-            'instagram' => 'required',
-            'linkedin' => 'required',
-            'youtube' => 'required',
-            'facebook' => 'required',
-            'twitter' => 'required',
+            'avatar' => 'required',
+            'instagram' => 'required|url',
+            'linkedin' => 'required|url',
+            'youtube' => 'required|url',
+            'facebook' => 'required|url',
+            'twitter' => 'required|url',
         ]);
 //        dd($data);
+        $file = $request->file('avatar');
+        $new_name = time() . '-' . $file->getClientOriginalName();
+        $file->move(public_path('assets/img/profile'),$new_name);
+        $data['avatar']=$new_name;
         $user = User::find($id)->update($data);
         session()->flash('msg', 'کافه جدید ساخته شد');
 
@@ -107,4 +112,6 @@ class UserController extends Controller
     {
         //
     }
+
+
 }

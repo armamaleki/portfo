@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\Cv;
+use App\Models\Design;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +21,11 @@ class AdminController extends Controller
     {
         $title = 'صفحه ادمیین';
         $user = Auth::user();
-        return view('admin.index', compact('title','user'));
+        $service=Service::with('user')->orderBy('created_at', 'desc')->paginate(5);
+        $clients=Client::paginate(5);
+        $cv=Cv::paginate(5);
+        $design=Design::paginate(5);
+        return view('admin.index', compact('title','user', 'service','clients','cv','design'));
     }
 
     /**

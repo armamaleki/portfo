@@ -9,60 +9,66 @@
             <form action="{{route('user.update', $user->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <img src="{{asset('assets/images/profile.jpg')}}" class="img-thumbnail" alt="profile-image">
 
                 <div class="profile-info-detail">
-                    <div class="col-sm-6">
 
-                        <input type="text" class="form-control" placeholder="name max 25 " maxlength="25"
+                <div class="col-sm-6">
+                    <img src="{{asset('assets/img/profile')}}/{{$user->avatar}}" width="700" class="img-thumbnail"
+                         alt="{{$user->name}}-{{$user->lastname}}">
+
+                </div>
+
+                    <div class="col-sm-6 m-b-5">
+                        <input type="file" name="avatar"  class="form-control">
+                        @error('avatar')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-sm-6 m-b-5">
+                        <input type="text" name="address"  class="form-control" maxlength="35"
+                               placeholder=" ادرس 35 کارکتر"
+                               value="{{$user->address}}">
+                        @error('address')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-sm-6 m-b-5">
+
+                        <input type="text" class="form-control" placeholder="نام 25 کارکتر " maxlength="25"
                                value="{{$user->name}}" name="name" id="alloptions">
                         @error('name')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="last name max 25 " maxlength="25"
+                    <div class="col-sm-6 m-b-5">
+                        <input type="text" class="form-control" placeholder="نام خانوادگی 25 کارکتر " maxlength="25"
                                value="{{$user->lastname}}"
                                name="lastname" id="alloptions">
                         @error('lastname')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 m-b-5">
                         <input type="text" name="residence" class="form-control" maxlength="25"
-                               placeholder=" residence max 25"
+                               placeholder="محل زندگی 25 کارکتر"
                                value="{{$user->residence}}">
                         @error('residence')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+
                     <div class="col-sm-6">
-                        <input type="text" name="address" class="form-control" maxlength="25"
-                               placeholder=" address max 25"
-                               value="{{$user->address}}">
-                        @error('address')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" name="avatar" class="form-control" maxlength="25" placeholder="avatar max 25"
-                               value="{{$user->avatar}}">
-                        @error('avatar')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" name="email" class="form-control" maxlength="25" placeholder=" email max 25"
+                        <input type="text" name="email" class="form-control" maxlength="25" placeholder=" ادرس ایمیل 25 کارکتر"
                                value="{{$user->email}}">
                         @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <p class="text-muted m-b-20"><i>Web Designer</i></p>
+                    <p class="text-muted m-b-20"><i>طراح سایت</i></p>
                     <div class="form-group">
                         <div class="col-md-12 m-b-20">
-                            <textarea name="about" class="form-control" placeholder="about"
-                                      rows="5">{{$user->about}}</textarea>
+                            <textarea name="about" class="form-control" id="elm1">{{$user->about}}</textarea>
                             @error('about')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -73,7 +79,7 @@
                         <div class="card-box">
 
 
-                            <h4 class="header-title m-t-0 m-b-30">social media</h4>
+                            <h4 class="header-title m-t-0 m-b-30">شبکه های اجتمائی</h4>
 
                             <div class="row">
                                 <div class="col-md-6">

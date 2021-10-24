@@ -45,7 +45,7 @@ class DesignController extends Controller
             'style' => 'required',
         ]);
         $store=Design::create($data);
-        return back();
+        return redirect()->route('design.edit',$store);
     }
 
     /**
@@ -100,6 +100,7 @@ class DesignController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $des=Design::find($id)->delete();
+        return back();
     }
 }

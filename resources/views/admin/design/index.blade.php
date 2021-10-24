@@ -9,7 +9,7 @@
                         <div class="m-b-30">
                             <a href="{{route('design.create')}}" id="addToTable"
                                class="btn btn-primary waves-effect waves-light">اضافه کردن <i
-                                    class="fa fa-plus"></i></a>
+                                    class="fa-solid fa-plus-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -45,8 +45,12 @@
                                             <td>{{$des->style}}</td>
                                             <td class="actions">
 
-                                                <a href="{{route('design.edit', $des->id)}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <a href="{{route('design.edit', $des->id)}}" class="on-default edit-row"><i class="fa-solid fa-pen"></i></a>
+                                                <a onclick="getElementById('design-id-{{$des->id}}').submit()" class="on-default remove-row"><i class="fa-solid fa-trash-can-list"></i></a>
+                                                <form action="{{route('design.destroy', $des->id) }} " method="post" id="design-id-{{$des->id}}">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

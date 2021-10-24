@@ -23,9 +23,10 @@ class ClientController extends Controller
             Cache::put('user', $user);
         }
     }
+
     public function index()
     {
-        $clients=Client::paginate(15);
+        $clients = Client::paginate(15);
         return view('admin.clients.index', compact('clients'));
     }
 
@@ -36,7 +37,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $user=Auth::user();
+        $user = Auth::user();
 
         return view('admin.clients.create', compact('user'));
     }
@@ -44,24 +45,29 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $data=$request->validate([
-           'title'=>'required',
-           'body'=>'required',
-           'address'=>'required',
+        $data = $request->validate([
+            'title' => 'required',
+            'avatar' => 'required',
+            'company' => 'required',
+            'address' => 'required|url',
         ]);
-        $validate=Client::create($data);
+        $file = $request->file('avatar');
+        $new_name = time() . '-' . $file->getClientOriginalName();
+        $file->move(public_path('assets/img/clients'), $new_name);
+        $data['avatar'] = $new_name;
+        $validate = Client::create($data);
         return redirect()->route('client.edit', $validate['id']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,41 +78,48 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $client=Client::find($id);
-        return view('admin.clients.edit'  ,compact('client'));
+        $client = Client::find($id);
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $data=$request->validate([
-            'title'=>'required',
-            'body'=>'required',
-            'address'=>'required',
+        $data = $request->validate([
+            'title' => 'required',
+            'avatar' => 'required',
+            'company' => 'required',
+            'address' => 'required',
         ]);
-        $validate=Client::find($id)->update($data);
+        $file = $request->file('avatar');
+        $new_name = time() . '-' . $file->getClientOriginalName();
+        $file->move(public_path('assets/img/clients'), $new_name);
+        $data['avatar'] = $new_name;
+        $validate = Client::find($id)->update($data);
         return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $clien = Client::find($id);
+        $clien->delete();
+        return back();
     }
 }

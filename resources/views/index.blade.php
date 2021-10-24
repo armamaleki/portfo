@@ -40,7 +40,7 @@
                     <div class="image-container">
                         <h2 class="header-name"></h2>
 
-                        <img src="{{asset('img/profile-img.jpg')}}" alt="profile-pic">
+                        <img src="{{asset('assets/img/profile')}}/{{cache()->get('user')->avatar}}" alt="profile-pic">
                     </div>
 
                     <!--Nav Menus-->
@@ -59,6 +59,11 @@
                             </li>
                             <li><a href="#contact" class="pt-link"><span class="nav-menu-icon"><i
                                             class="lnr lnr-envelope"></i></span>تماس</a></li>
+
+                            @if(auth()->check() && auth()->user()->is_admin ==1)
+                                <li><a href="{{route('index')}}" class="pt-link"><span class="nav-menu-icon"><i
+                                                class="lnr lnr-envelope"></i></span>پنل ادمین</a></li>
+                            @endif
                         </ul>
                     </nav>
 
@@ -66,11 +71,16 @@
                     <div class="nav-footer">
                         <!--Social Links-->
                         <ul class="social">
-                            <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-dribbble-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-behance-square"></i></a></li>
+                            <li><a href="{{cache()->get('user')->facebook}}"><i class="fab fa-facebook-square"></i></a>
+                            </li>
+                            <li><a href="{{cache()->get('user')->twitter}}"><i class="fab fa-twitter-square"></i></a>
+                            </li>
+                            <li><a href="{{cache()->get('user')->youtube}}"><i class="fab fa-youtube-square"></i></a>
+                            </li>
+                            <li><a href="{{cache()->get('user')->instagram}}"><i
+                                        class="fab fa-instagram-square"></i></a></li>
+                            <li><a href="{{cache()->get('user')->linkedin}}"><i class="fab fa-linkedin"></i></a></li>
+
                         </ul>
                         <!--Copyright Text-->
                         <div class="copy">
@@ -148,7 +158,9 @@
                                 <ul>
                                     <li><span class="title">نام</span><span
                                             class="value">{{cache()->get('user')->name}}</span></li>
+                                    {{--@todo--}}
                                     <li><span class="title">سن</span><span class="value">26 Years</span></li>
+
                                     <li><span class="title">محل سکونت</span><span
                                             class="value">{{cache()->get('user')->residence}}</span>
                                     </li>
@@ -183,10 +195,10 @@
                         @foreach($services as $service)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="service-item">
-                                    <div class="icon"><i class=" fab fa-{{$service->icon}}" style="color: Tomato;"></i>
+                                    <div class="icon"><i class="{!! $service->icon !!}" style="color: Tomato;"></i>
                                     </div>
-                                    <h4>{{$service->title}}</h4>
-                                    <p>{{$service->body}}</p>
+                                    <h4>{!! $service->title !!}</h4>
+                                    <p>{!! $service->body !!}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -206,10 +218,8 @@
                         @foreach($client as $cli)
                             <!--Client Logo-->
                                 <div class="client-logo">
-                                    <a href="{{$cli->slug}}">
-                                        <p>{{$cli->title}}</p>
-                                        {{--                                    <img src="img/clients/client-01.png" alt="">--}}
-                                        <div class="icon"><i class=" fab fa-"></i></div>
+                                    <a href="{{$cli->address}}">
+                                        <img src="{{asset('assets/img/clients')}}/{{$cli->avatar}}" alt="{{$cli->title}}">
                                     </a>
                                 </div>
                             @endforeach
@@ -362,7 +372,7 @@
                                             <h4>{{$c->title}}</h4>
                                             <h5>{{$c->company}}</h5>
                                             <p class="info">
-                                                {{$c->body}}
+                                                {!! $c->body !!}
                                             </p>
                                         </div>
                                         <span class="year">
@@ -393,10 +403,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         @endforeach
-
                     </div>
                     <!--Skills Row End-->
                 </div>
@@ -444,7 +452,7 @@
 
                         <!--Portfolio Item-->
                         <div class="item col-lg-4 col-sm-6 design">
-                            <a class="ajax-link" href="single-work.html">
+                            <a class="ajax-link" href="{{route('portfo')}}">
                                 <figure>
                                     <img src="img/portfolio/img-2.jpg" alt="">
                                     <figcaption>

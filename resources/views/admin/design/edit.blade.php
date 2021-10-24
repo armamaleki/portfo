@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Input Select</label>
+                            <label class="col-sm-2 control-label">مهارت شما</label>
                             <div class="col-sm-10">
                                 <select name="style" class="form-control">
                                     <option value="10">10</option>
@@ -34,7 +34,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-block btn-xs btn-purple waves-effect waves-light">Block Button</button>
+                        <button type="submit" class="btn btn-block btn-xs btn-purple waves-effect waves-light">اپدیت</button>
                     </form>
                 </div><!-- end col -->
 

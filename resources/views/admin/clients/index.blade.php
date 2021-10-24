@@ -8,8 +8,8 @@
                     <div class="col-sm-6">
                         <div class="m-b-30">
                             <a href="{{route('client.create')}}" id="addToTable"
-                               class="btn btn-primary waves-effect waves-light">اضافه کردن همکار جدید<i
-                                    class="fa fa-plus"></i></a>
+                               class="btn btn-inverse btn-rounded w-md waves-effect waves-light m-b-20">اضافه کردن همکار
+                                جدید</a>
                         </div>
                     </div>
                 </div>
@@ -34,11 +34,13 @@
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1"
                                             colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                            style="width: 413px;">شروع فعالیت و پایان
+                                            style="width: 413px;">تصویر
                                         </th>
-                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Actions"
-                                            style="width: 193px;">
+                                        <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1"
+                                            colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                            style="width: 413px;">ویرایش
                                         </th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -46,14 +48,15 @@
                                     @foreach($clients as $client)
                                         <tr class="gradeA odd" role="row">
                                             <td class="sorting_1">{{$client->title}}</td>
-                                            <td>{{$client->body}}</td>
-
+                                            <td>{{$client->company}}</td>
+                                            <td><img class="img-responsive img-circle" src="{{asset('assets/img/clients')}}/{{$client->avatar}}"
+                                                     width="100" alt="{{$client->company}}"></td>
                                             <td class="actions">
                                                 <a href="{{route('client.edit',$client->id)}}"
                                                    class="on-default edit-row"><i
-                                                        class="fa fa-pencil"></i></a>
+                                                        class="fa-solid fa-pen"></i></a>
                                                 <a onclick="getElementById('servise-delete-{{$client->id}}').submit()"
-                                                   class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                   class="on-default remove-row"><i class="fa-solid fa-trash-can-list"></i></a>
                                                 <form method="post" action="{{route('client.destroy',$client->id)}}"
                                                       id="servise-delete-{{$client->id}}">
                                                     @csrf

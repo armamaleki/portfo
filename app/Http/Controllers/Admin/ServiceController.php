@@ -48,7 +48,7 @@ class ServiceController extends Controller
         ]);
         $data['user_id'] = Auth::user()->id;
         $service = Service::create($data);
-        return back();
+        return redirect()->route('service.edit' , $service->id);
     }
 
     /**

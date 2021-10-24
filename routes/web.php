@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/portfo', function () {
+    return view('portfo');
+})->name('portfo');
 
 Auth::routes();
 

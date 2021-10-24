@@ -17,6 +17,7 @@
 
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
     <link href="{{asset('assets/css/bootstrap-rtl.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/css/all.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/core.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/components.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
@@ -104,7 +105,7 @@
             <!-- User -->
             <div class="user-box">
                 <div class="user-img">
-                    <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme"
+                    <img src="{{asset('assets/img/profile')}}/{{cache()->get('user')->avatar}}" alt="user-img" title="{{cache()->get('user')->name}}-{{cache()->get('user')->lastname}}"
                          class="img-circle img-thumbnail img-responsive">
                     <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
                 </div>

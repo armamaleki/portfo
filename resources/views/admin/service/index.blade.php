@@ -8,15 +8,15 @@
         <div class="col-lg-3 col-md-6">
         <div class="text-center card-box">
                 <div>
-                    <i style="font-size: 100px;" class=" fa fa-{{$servise->icon}}"></i>
+                    <i style="font-size: 100px;" class="{{$servise->icon}}"></i>
                     <h2 class="text-muted m-b-10">{{$servise->title}}</h2>
                     <p class="text-muted font-13 m-b-30">
-                        {{$servise->body}}
+                        {!! $servise->body !!}
                     </p>
                     <td class="actions">
-                        <a href="{{route('service.edit',$servise->id)}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                        <a href="{{route('service.edit',$servise->id)}}" class="on-default edit-row"><i class="fa-solid fa-pen"></i></a>
 
-                        <a onclick="getElementById('servise-delete-{{$servise->id}}').submit()" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                        <a onclick="getElementById('servise-delete-{{$servise->id}}').submit()" class="on-default remove-row"><i class="fa-solid fa-trash-can-list"></i></a>
                         <form method="post" action="{{route('service.destroy',$servise->id)}}" id="servise-delete-{{$servise->id}}">
                             @csrf
                             @method('delete')
