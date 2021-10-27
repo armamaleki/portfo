@@ -31,12 +31,15 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::resource('/client','ClientController');
     Route::resource('/cv','CvController');
     Route::resource('/design','DesignController');
-    Route::resource('/gallery','GalleryController');
     Route::resource('/posts','PostController');
+    Route::resource('/portfolio','PortfolioController');
+    Route::resource('/gallery','GalleryController');
+    Route::resource('/category','CategoryController');
 });
 
 Route::namespace('View')->group(function (){
     Route::get('/','IndexController@index')->name('index_view');
+    Route::get('/portfo/{slug}','IndexController@portfolio')->name('portfolio_view');
     Route::get('/post/{slug}','IndexController@show')->name('show');
     Route::post('/post-comment','IndexController@postComment')->name('comment');
 

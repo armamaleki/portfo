@@ -219,7 +219,8 @@
                             <!--Client Logo-->
                                 <div class="client-logo">
                                     <a href="{{$cli->address}}">
-                                        <img src="{{asset('assets/img/clients')}}/{{$cli->avatar}}" alt="{{$cli->title}}">
+                                        <img src="{{asset('assets/img/clients')}}/{{$cli->avatar}}"
+                                             alt="{{$cli->title}}">
                                     </a>
                                 </div>
                             @endforeach
@@ -436,150 +437,25 @@
 
                     <!--Portfolio Items-->
                     <div class="row portfolio-items mb-50">
+                    @foreach($portfolio as $port)
 
                         <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 brand graphic">
-                            <a class="image-link" href="img/portfolio/img-1.jpg">
-                                <figure>
-                                    <img src="img/portfolio/img-1.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Book Design</h4>
-                                        <p>Graphic</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
+                            <div class="item col-lg-4 col-sm-6 ">
+                                <a class="ajax-link" href="{{route('portfolio_view',$port->slug)}}">
 
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 design">
-                            <a class="ajax-link" href="{{route('portfo')}}">
-                                <figure>
-                                    <img src="img/portfolio/img-2.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Notepad Design</h4>
-                                        <p>Design</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 design graphic">
-                            <a class="video-link" href="https://www.youtube.com/watch?v=k_okcNVZqqI">
-                                <figure>
-                                    <img src="img/portfolio/img-3.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Creative Cup</h4>
-                                        <p>Graphic</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 design">
-                            <a class="image-link" href="img/portfolio/img-4.jpg">
-                                <figure>
-                                    <img src="img/portfolio/img-4.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Business Card</h4>
-                                        <p>Design</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 brand">
-                            <a class="ajax-link" href="single-work.html">
-                                <figure>
-                                    <img src="img/portfolio/img-5.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Back Pack</h4>
-                                        <p>Brand</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 design">
-                            <a class="ajax-link" href="single-work.html">
-                                <figure>
-                                    <img src="img/portfolio/img-6.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Door Hangar</h4>
-                                        <p>Design</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 graphic">
-                            <a class="image-link" href="img/portfolio/img-7.jpg">
-                                <figure>
-                                    <img src="img/portfolio/img-7.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Notepad Design</h4>
-                                        <p>graphic</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 brand">
-                            <a class="image-link" href="img/portfolio/img-8.jpg">
-                                <figure>
-                                    <img src="img/portfolio/img-8.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Creative Flyer</h4>
-                                        <p>Brand</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 brand">
-                            <a class="video-link" href="https://www.youtube.com/watch?v=k_okcNVZqqI">
-                                <figure>
-                                    <img src="img/portfolio/img-9.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Mobile App</h4>
-                                        <p>Brand</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 graphic">
-                            <a class="image-link" href="img/portfolio/img-10.jpg">
-                                <figure>
-                                    <img src="img/portfolio/img-10.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Cup Design</h4>
-                                        <p>Graphic</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!--Portfolio Item-->
-                        <div class="item col-lg-4 col-sm-6 brand graphic">
-                            <a class="ajax-link" href="single-work.html">
-                                <figure>
-                                    <img src="img/portfolio/img-11.jpg" alt="">
-                                    <figcaption>
-                                        <h4>Creative Box</h4>
-                                        <p>brand</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
+                                    @foreach($port->galleries as $po)
+                                        <figure>
+                                            <img src="{{asset('img/portfolio/320')}}/{{$po->file}}"
+                                                 alt="">
+                                            <figcaption>
+                                                <h4>{{$port->title}}</h4>
+                                                <p>{{$port->client}}</p>
+                                            </figcaption>
+                                        </figure>
+                                    @endforeach
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </section>

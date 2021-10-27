@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Cv;
 use App\Models\Design;
+use App\Models\Portfolio;
 use App\Models\Post;
 use App\Models\Service;
 use App\Models\Client;
@@ -33,11 +34,12 @@ class IndexController extends Controller
         $client = Client::paginate(15);
         $cv = Cv::paginate(15);
         $design = Design::paginate(15);
+        $portfolio = Portfolio::with('galleries')->get();
         $services = Service::with('user')->paginate(15);
         $posts = Post::with('user')->paginate(15);
         $user = User::latest()->first();
         $title = 'تایتل صفحه ';
-        return view('index', compact('services', 'client', 'cv', 'design', 'posts', 'user', 'title'));
+        return view('index', compact('services', 'client', 'cv', 'design', 'posts', 'user', 'title', 'portfolio'));
     }
 
 
@@ -75,5 +77,12 @@ class IndexController extends Controller
         }
         session()->flash('msg', 'کامنت با موفقیت ثبت شد');
         return back();
+    }
+
+    public function portfolio($id)
+    {
+        $portfo = Portfolio::with('galleries')->where('slug', $id)->firstOrFail();
+        return view('portfo', compact('portfo',));
+
     }
 }

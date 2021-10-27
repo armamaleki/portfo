@@ -8,8 +8,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="m-b-30">
-                                <a href="{{route('posts.create')}}" id="addToTable" class="btn btn-primary waves-effect waves-light">ارسال پست <i
-                                        class="fa fa-plus"></i></a>
+                                    <a href="{{route('posts.create')}}" id="addToTable" class="btn btn-primary waves-effect waves-light">ارسال پست </a>
                             </div>
                         </div>
                     </div>
@@ -65,13 +64,9 @@
                                                 </td>
 
                                                 <td class="actions">
-                                                    <a href="#" class="hidden on-editing save-row"><i
-                                                            class="fa fa-save"></i></a>
-                                                    <a href="#" class="hidden on-editing cancel-row"><i
-                                                            class="fa fa-times"></i></a>
-                                                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                    <a href="#" class="on-default edit-row"><i class="fa-solid fa-pen"></i></a>
                                                     <a href="#" class="on-default remove-row"><i
-                                                            class="fa fa-trash-o"></i></a>
+                                                            class="fa-solid fa-trash-can-list"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

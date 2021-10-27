@@ -19,6 +19,7 @@ class CreatePortfoliosTable extends Migration
             $table->longText('body');
             $table->string('client');
             $table->string('url');
+            $table->string('avatar');
             $table->string('slug');
             $table->enum('status', [0,1])->default(0);
             $table->timestamps();

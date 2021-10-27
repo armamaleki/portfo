@@ -161,7 +161,13 @@
                         <a href="{{route('design.index')}}" class="waves-effect"><i
                                 class="zmdi zmdi-language-html5"></i> <span> مهارت ها </span>
                         </a>
-                    </li><li>
+                    </li>
+                    <li>
+                        <a href="{{route('portfolio.index')}}" class="waves-effect"><i
+                                class="fa fa-times"></i> <span> نمونه کار ها  </span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route('posts.index')}}" class="waves-effect"><i
                                 class="zmdi zmdi-palette "></i> <span> نوشته ها </span>
                         </a>

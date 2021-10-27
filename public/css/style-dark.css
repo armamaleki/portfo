@@ -415,7 +415,7 @@ a:focus {
 }
 
 .page-heading .icon {
-    float: right;
+    float: left;
     font-size: 38px;
     line-height: 1em;
     color: #ffffff;
@@ -461,11 +461,11 @@ a:focus {
 }
 
 .subheading h3:before {
-    left: 0;
+    right: 0;
 }
 
 .subheading h3:after {
-    right: 0;
+    left: 0;
 }
 
 
@@ -507,7 +507,7 @@ a:focus {
     border-bottom: 21px solid transparent;
     position: absolute;
     top: -26px;
-    right: -12px;
+    left: -12px;
     border-bottom-color: #ffffff;
 }
 
@@ -517,7 +517,7 @@ a:focus {
     color: #ffffff;
     position: absolute;
     top: -30px;
-    right: 0;
+    left: 0;
 }
 
 
@@ -554,7 +554,7 @@ a:focus {
     font-weight: 500;
     position: absolute;
     top: 7px;
-    left: 12px;
+    right: 12px;
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
@@ -565,7 +565,7 @@ a:focus {
 .input--filled .input__label {
     font-size: 14px;
     top: -25px;
-    left: 0;
+    right: 0;
 }
 
 .input--filled .input__field {
@@ -606,7 +606,7 @@ textarea {
 .btn-main:hover:after,
 .btn-main:focus:after {
     opacity: 1;
-    left: 0;
+    right: 0;
     width: 100%;
 }
 
@@ -616,7 +616,7 @@ textarea {
     width: 30%;
     height: 100%;
     top: 0;
-    left: 35%;
+    right: 35%;
     background-color: #ffffff;
     opacity: 0;
     -webkit-transition: all .3s ease;
@@ -628,9 +628,9 @@ textarea {
 blockquote {
     font-size: 18px;
     color: #ffffff;
-    border-left: 4px solid #ffffff;
+    border-right: 4px solid #ffffff;
     font-style: italic;
-    padding-left: 20px;
+    padding-right: 20px;
     margin: 40px 0;
     font-weight: 500;
 }
@@ -640,7 +640,7 @@ blockquote {
 .preloader {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100vh;
     width: 100vw;
     background-color: #2C2D2F;
@@ -745,11 +745,11 @@ blockquote {
     width: 200px;
     background-color: #17181B;
     overflow: auto;
-    left: 0;
+    right: 0;
     overflow-x: hidden;
     text-align: center;
     z-index: 999;
-    border-right: 1px solid #202226;
+    border-left: 1px solid #202226;
 }
 
 .header-main .image-container {
@@ -762,7 +762,7 @@ blockquote {
 
 .header-main .image-container .header-name {
     position: absolute;
-    left: 0;
+    right: 0;
     bottom: 0;
     width: 100%;
     color: #fff;
@@ -778,7 +778,7 @@ blockquote {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
     background-color: #17181B;
@@ -791,20 +791,20 @@ blockquote {
     letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid #202226;
-    text-align: left;
+    text-align: right;
 }
 
 .header-main nav.nav-menu ul li a {
     display: block;
     line-height: 45px;
-    padding-left: 70px;
+    padding-right: 70px;
     position: relative;
     color: #777;
 }
 
 .header-main nav.nav-menu ul li a span.nav-menu-icon {
     position: absolute;
-    left: 40px;
+    right: 40px;
     display: inline-block;
     font-size: 20px;
 }
@@ -816,7 +816,7 @@ blockquote {
 header .header-mobile {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     height: 50px;
     width: 100%;
     background-color: #17181B;
@@ -829,10 +829,10 @@ header .header-mobile {
 
 header .header-mobile h2 {
     position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
     display: inline-block;
     color: #fff;
     font-size: 24px;
@@ -847,8 +847,8 @@ header .header-mobile .header-toggle {
     cursor: pointer;
     width: 50px;
     text-align: center;
-    border-left: 1px solid #3b3c43;
-    float: right;
+    border-right: 1px solid #3b3c43;
+    float: left;
 }
 
 header .header-mobile .header-toggle i {
@@ -868,7 +868,7 @@ header .header-mobile .header-toggle i {
 .header-main .nav-footer .social li {
     display: inline-block;
     font-size: 18px;
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .header-main .nav-footer .social li a {
@@ -883,7 +883,7 @@ header .header-mobile .header-toggle i {
 }
 
 .header-main .nav-footer .social li:last-child {
-    margin-right: 0;
+    margin-left: 0;
 }
 
 .header-main .nav-footer .copy p {
@@ -894,8 +894,8 @@ header .header-mobile .header-toggle i {
 .site-main {
     position: absolute;
     top: 0;
-    left: 200px;
-    right: 0;
+    right: 200px;
+    left: 0;
     width: auto;
     height: 100%;
     -webkit-perspective: 1200px;
@@ -908,7 +908,7 @@ header .header-mobile .header-toggle i {
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     opacity: 0;
     visibility: hidden;
     overflow: auto;
@@ -950,8 +950,8 @@ header .header-mobile .header-toggle i {
     position: absolute;
     content: "";
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     bottom: 0;
     background-color: #151515;
     opacity: .5;
@@ -1008,9 +1008,9 @@ header .header-mobile .header-toggle i {
 
 .banner-section .banner-slider {
     position: absolute;
-    left: 0;
-    top: 0;
     right: 0;
+    top: 0;
+    left: 0;
     bottom: 0;
     z-index: -1;
 }
@@ -1018,9 +1018,9 @@ header .header-mobile .header-toggle i {
 .banner-section #particles-js {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 /*============ 5. About Section ============*/
@@ -1052,7 +1052,7 @@ header .header-mobile .header-toggle i {
     border-bottom: 2px solid #ffffff;
     position: relative;
     display: inline-block;
-    margin-right: 15px;
+    margin-left: 15px;
     padding-bottom: 1px;
     color: #ffffff;
 }
@@ -1060,7 +1060,7 @@ header .header-mobile .header-toggle i {
 .about-section .about .about-info ul li span.title:after {
     content: ':';
     position: absolute;
-    right: -10px;
+    left: -10px;
 }
 
 .about-section .services .service-item {
@@ -1113,12 +1113,12 @@ header .header-mobile .header-toggle i {
 .testimonials .testimonial-item .testimonial-content {
     background-color: #17181B;
     width: 100%;
-    -webkit-border-radius: 50px 0 50px 0;
-    border-radius: 50px 0 50px 0;
+    -webkit-border-radius: 0 50px 0 50px;
+    border-radius: 0 50px 0 50px;
     padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 100px;
-    padding-right: 20px;
+    padding-right: 100px;
+    padding-left: 20px;
     font-size: 14px;
     position: relative;
     -webkit-filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
@@ -1132,7 +1132,7 @@ header .header-mobile .header-toggle i {
 .testimonials .testimonial-item .testimonial-content:before {
     content: "\f10d";
     position: absolute;
-    left: 5%;
+    right: 5%;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -1146,30 +1146,30 @@ header .header-mobile .header-toggle i {
 .testimonials .testimonial-item .testimonial-content:after {
     position: absolute;
     content: "";
-    left: 15px;
+    right: 15px;
     top: 100%;
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
     border-top: 11px solid #17181B;
 }
 
 .testimonials .testimonial-item .testimonial-meta {
     margin-top: 20px;
-    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .testimonials .testimonial-item .testimonial-meta img {
     width: 60px;
     height: 60px;
-    float: left;
-    -webkit-border-radius: 20px 0 20px 0;
-    border-radius: 20px 0 20px 0;
-    margin-right: 10px;
+    float: right;
+    -webkit-border-radius: 0 20px 0 20px;
+    border-radius: 0 20px 0 20px;
+    margin-left: 10px;
 }
 
 .testimonials .testimonial-item .testimonial-meta .meta-info h4 {
@@ -1193,14 +1193,14 @@ header .header-mobile .header-toggle i {
     margin: 20px 0 50px;
     list-style: none;
     position: relative;
-    padding: 0 0 0 50px;
+    padding: 0 50px 0 0;
     width: 100%;
 }
 
 .resume-section ul.education li,
 .resume-section ul.experience li {
     position: relative;
-    margin-left: 10px;
+    margin-right: 10px;
     padding: 20px;
     -webkit-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
@@ -1217,7 +1217,7 @@ header .header-mobile .header-toggle i {
     width: 2px;
     height: 100%;
     background-color: #e1e1e1;
-    left: -10px;
+    right: -10px;
     top: 0;
     position: absolute;
 }
@@ -1233,7 +1233,7 @@ header .header-mobile .header-toggle i {
     border-radius: 50%;
     border: 2px solid #e1e1e1;
     position: absolute;
-    left: -4px;
+    right: -4px;
     top: -10px;
 }
 
@@ -1244,7 +1244,7 @@ header .header-mobile .header-toggle i {
 
 .resume-section .education .content,
 .resume-section .experience .content {
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .resume-section .education .content h4,
@@ -1276,7 +1276,7 @@ header .header-mobile .header-toggle i {
 .resume-section .education span.year,
 .resume-section .experience span.year {
     height: 100%;
-    left: -10px;
+    right: -10px;
     top: 0;
     position: absolute;
 }
@@ -1285,9 +1285,9 @@ header .header-mobile .header-toggle i {
 .resume-section .experience span.year span {
     font-size: 16px;
     position: absolute;
-    -webkit-transform: translateX(-120%);
-    -ms-transform: translateX(-120%);
-    transform: translateX(-120%);
+    -webkit-transform: translateX(120%);
+    -ms-transform: translateX(120%);
+    transform: translateX(120%);
     color: #ffffff;
 }
 
@@ -1356,8 +1356,8 @@ header .header-mobile .header-toggle i {
 }
 
 .portfolio-section .item {
-    padding-left: 1em;
     padding-right: 1em;
+    padding-left: 1em;
 }
 
 .portfolio-section .item figure {
@@ -1371,7 +1371,7 @@ header .header-mobile .header-toggle i {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100%;
     width: 100%;
     background-color: #000;
@@ -1398,9 +1398,9 @@ header .header-mobile .header-toggle i {
 
 .portfolio-section .item figure figcaption {
     position: absolute;
-    left: 0;
+    right: 0;
     top: 50%;
-    padding-left: 20px;
+    padding-right: 20px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -1436,13 +1436,13 @@ header .header-mobile .header-toggle i {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     bottom: 20px;
-    right: 25px;
+    left: 25px;
     color: #fff;
     font-size: 26px;
     opacity: 0;
-    -webkit-transform: translateX(50px);
-    -ms-transform: translateX(50px);
-    transform: translateX(50px);
+    -webkit-transform: translateX(-50px);
+    -ms-transform: translateX(-50px);
+    transform: translateX(-50px);
     -webkit-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     transition: all .1s ease-in;
@@ -1508,8 +1508,8 @@ header .header-mobile .header-toggle i {
     width: 82%;
     position: relative;
     background-color: #2C2D2F;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
     margin-top: -40px;
 }
 
@@ -1582,13 +1582,13 @@ header .header-mobile .header-toggle i {
     position: fixed;
     display: block;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100%;
     width: 100%;
     z-index: 1000;
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
     -webkit-transition: -webkit-transform .5s;
     transition: -webkit-transform .5s;
     -o-transition: transform .5s;
@@ -1610,7 +1610,7 @@ header .header-mobile .header-toggle i {
 .ajax-portfolio-popup .navigation-wrap {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     text-align: center;
     height: 80px;
@@ -1628,8 +1628,8 @@ header .header-mobile .header-toggle i {
 .ajax-portfolio-popup .content-wrap {
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     bottom: 0;
     margin-top: 80px;
     overflow-x: hidden;
@@ -1647,12 +1647,12 @@ header .header-mobile .header-toggle i {
     height: 60px;
     width: 60px;
     top: 30%;
-    left: -webkit-calc(100vw/2 - 30px);
-    left: calc(100vw/2 - 30px);
+    right: -webkit-calc(100vw/2 - 30px);
+    right: calc(100vw/2 - 30px);
     -webkit-animation: rotation .6s infinite linear;
     animation: rotation .6s infinite linear;
-    border-left: 6px solid #444;
-    border-right: 6px solid #e3e3e3;
+    border-right: 6px solid #444;
+    border-left: 6px solid #e3e3e3;
     border-bottom: 6px solid #e3e3e3;
     border-top: 6px solid #e3e3e3;
     -webkit-border-radius: 100%;
@@ -1665,8 +1665,8 @@ header .header-mobile .header-toggle i {
         transform: rotate(0deg);
     }
     to {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
+        -webkit-transform: rotate(-359deg);
+        transform: rotate(-359deg);
     }
 }
 
@@ -1676,8 +1676,8 @@ header .header-mobile .header-toggle i {
         transform: rotate(0deg);
     }
     to {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
+        -webkit-transform: rotate(-359deg);
+        transform: rotate(-359deg);
     }
 }
 
@@ -1708,7 +1708,7 @@ header .header-mobile .header-toggle i {
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     overflow: auto;
     z-index: 1;
 }
@@ -1771,8 +1771,8 @@ header .header-mobile .header-toggle i {
 }
 
 .blog-page .blog-comments .comment-list .comment .author-img {
-    float: left;
-    margin-right: 20px;
+    float: right;
+    margin-left: 20px;
 }
 
 .blog-page .blog-comments .comment-list .comment .author-img img {
@@ -1786,7 +1786,7 @@ header .header-mobile .header-toggle i {
 }
 
 .blog-page .blog-comments .comment-list .comment .comment-text .reply {
-    float: right;
+    float: left;
 }
 
 .blog-page .blog-comments .comment-list .comment .comment-text .reply a {
@@ -1796,7 +1796,7 @@ header .header-mobile .header-toggle i {
     padding: 3px 8px 4px 8px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    margin-left: 7px;
+    margin-right: 7px;
 }
 
 .blog-page .blog-comments .comment-list .comment .comment-text h6.author {
@@ -1840,7 +1840,7 @@ header .header-mobile .header-toggle i {
 
 @media screen and (max-width: 767px) {
     header .header-main {
-        left: -200px;
+        right: -200px;
         -webkit-transition: all .3s ease-in-out;
         -o-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
@@ -1855,10 +1855,10 @@ header .header-mobile .header-toggle i {
         transition: all .3s ease-in-out;
     }
     header .header-content.on .header-main {
-        left: 0px;
+        right: 0px;
     }
     #main {
-        left: 0px;
+        right: 0px;
         -webkit-transition: all .3s ease-in-out;
         -o-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
@@ -1879,7 +1879,7 @@ header .header-mobile .header-toggle i {
     .header-main .nav-footer {
         position: absolute;
         bottom: 0;
-        left: 0;
+        right: 0;
     }
 }
 
@@ -1893,7 +1893,7 @@ header .header-mobile .header-toggle i {
     }
     .resume-section ul.education span.year,
     .resume-section ul.experience span.year {
-        left: 42px;
+        right: 42px;
     }
     .resume-section .skills .skill-item {
         padding: 0;

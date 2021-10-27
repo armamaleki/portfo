@@ -1,44 +1,37 @@
-
 @extends('layouts.index')
 
 
 @section('content')
 
     <div class="ajax-portfolio-popup on">
-    <span class="ajax-loader" style="display: none;"></span>
-    <div class="navigation-wrap">
-        <span class="popup-close"><i class="fas fa-times-circle"></i></span>
-    </div>
-    <div class="content-wrap">
-        <div class="popup-content">
-
-
-            <meta charset="UTF-8">
-            <title>Single Ajax Portfolio</title>
-
-
-            <div class="single-work">
-                <div class="container">
-                    <div class="row text-center">
-                        <div class="col-md-10 offset-md-1 mb-40">
-                            <h1 class="title mb-30">Project Title</h1>
-                            <p class="mb-30">Adipisicing tempore architecto quae est similique Hic iste explicabo vitae temporibus quidem. Porro itaque quas expedita fugiat accusantium, harum. Quasi provident necessitatibus omnis vel sunt Quia consectetur vel exercitationem debitis aut Excepturi ut possimus suscipit in reprehenderit. Eaque natus quia!  </p>
-                            <ul class="information">
-                                <li><span class="title">Client:</span> Themeforest</li>
-                                <li><span class="title">Website:</span> envato.com</li>
-                                <li><span class="title">Category:</span> web, creative, photography</li>
-                            </ul>
-
-                            <figure class="mt-30"><img src="img/single-work/img-1.jpg" alt=""></figure>
-                            <figure class="mt-30"><img src="img/single-work/img-2.jpg" alt=""></figure>
-
+        <span class="ajax-loader" style="display: none;"></span>
+        <div class="navigation-wrap">
+            <span class="popup-close"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="content-wrap">
+            <div class="popup-content">
+                <meta charset="UTF-8">
+                <div class="single-work">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-md-10 offset-md-1 mb-40">
+                                <h1 class="title mb-30">{{$portfo->title}}</h1>
+                                <p class="mb-30">{!! $portfo->body !!}</p>
+                                <ul class="information">
+                                    <li><span class="title">نام همکار :</span> {!! $portfo->client !!}</li>
+                                    <li><span class="title">سایت:</span> {!! $portfo->url !!}</li>
+                                    <li><span class="title">دسته بندی:</span> web, creative, photography</li>
+                                </ul>
+                                @foreach($portfo->galleries as $port)
+                                    <figure class="mt-30"><img style="width: 50%;" class="figure-img img-fluid rounded" src="{{asset('img/portfolio/320')}}/{{$port->file}}" alt="{{$portfo->url}}">
+                                    </figure>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
         </div>
     </div>
-</div>
 @endsection

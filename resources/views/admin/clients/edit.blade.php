@@ -42,12 +42,6 @@
                         </div>
                         <button type="submit" class="btn btn-block btn-xs btn-purple waves-effect waves-light">add</button>
                     </form>
-
-{{--                    <form action="{{route('gallery.store')}}" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">--}}
-{{--                        @csrf--}}
-{{--                        <input type="hidden" name="client_id" value="{{$client->id}}" />--}}
-{{--                    </form>--}}
-
                 </div><!-- end col -->
             </div><!-- end row -->
         </div>
