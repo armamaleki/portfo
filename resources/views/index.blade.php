@@ -439,20 +439,18 @@
                     <div class="row portfolio-items mb-50">
                     @foreach($portfolio as $port)
 
+
                         <!--Portfolio Item-->
                             <div class="item col-lg-4 col-sm-6 ">
                                 <a class="ajax-link" href="{{route('portfolio_view',$port->slug)}}">
-
-                                    @foreach($port->galleries as $po)
-                                        <figure>
-                                            <img src="{{asset('img/portfolio/320')}}/{{$po->file}}"
-                                                 alt="">
-                                            <figcaption>
-                                                <h4>{{$port->title}}</h4>
-                                                <p>{{$port->client}}</p>
-                                            </figcaption>
-                                        </figure>
-                                    @endforeach
+                                    <figure>
+                                        <img src="{{asset('img/portfolio/avatar')}}/{{$port->avatar}}"
+                                             alt="">
+                                        <figcaption>
+                                            <h4>{{$port->title}}</h4>
+                                            <p>{{$port->client}}</p>
+                                        </figcaption>
+                                    </figure>
                                 </a>
                             </div>
                         @endforeach
@@ -479,7 +477,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="{{route('show',$post->slug)}}" class="blog-item">
                                     <div class="blog-image">
-                                        <img src="img/blog/img-9.jpg" alt="#">
+                                        <img src="" alt="#">
                                     </div>
                                     <div class="blog-content">
                                         <span class="cat">{{$post->title}}</span>

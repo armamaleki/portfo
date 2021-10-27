@@ -8,7 +8,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="post" action="{{route('portfolio.store')}}" class="form-horizontal" role="form">
+                    <form method="post" action="{{route('portfolio.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form">
                         @csrf
                         <div class="form-group">
                             <label class="col-md-2 control-label">موضوع</label>
@@ -19,13 +19,19 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">نام شرکت</label>
                             <div class="col-md-10">
-                                <input type="text" name="client" {{old('client')}} class="form-control" placeholder="نام شرکت">
+                                <input type="text" name="client" value="{{old('client')}}" class="form-control" placeholder="نام شرکت">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">ادرس اینترنتی</label>
                             <div class="col-md-10">
-                                <input type="text" name="url" {{old("url")}} class="form-control" placeholder="ادرس اینترنتی">
+                                <input type="text" name="url" value="{{old("url")}}" class="form-control" placeholder="ادرس اینترنتی">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">اواتار </label>
+                            <div class="col-md-10">
+                                <input type="file" name="avatar"  class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

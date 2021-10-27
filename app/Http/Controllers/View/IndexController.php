@@ -34,7 +34,8 @@ class IndexController extends Controller
         $client = Client::paginate(15);
         $cv = Cv::paginate(15);
         $design = Design::paginate(15);
-        $portfolio = Portfolio::with('galleries')->get();
+        $portfolio = Portfolio::paginate(15);
+//        dd($portfolio);
         $services = Service::with('user')->paginate(15);
         $posts = Post::with('user')->paginate(15);
         $user = User::latest()->first();

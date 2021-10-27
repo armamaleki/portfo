@@ -13,6 +13,7 @@ class Portfolio extends Model
         'title',
         'client',
         'url',
+        'avatar',
         'body',
         'slug',
     ];

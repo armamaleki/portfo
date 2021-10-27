@@ -15,7 +15,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        $portfo=Portfolio::paginate(20);
+        $portfo = Portfolio::paginate(20);
         return view('admin.portfo.index', compact('portfo'));
     }
 
@@ -38,15 +38,20 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->validate([
+        $data = $request->validate([
             'title' => 'required',
             'client' => 'required',
+            'avatar' => 'required',
             'url' => 'required|url',
             'body' => 'required',
         ]);
-        $data['slug']=str_replace(' ', '-' ,$request['title']);
-        $portfo=Portfolio::create($data);
-        return redirect()->route('portfolio.edit',$portfo);
+        $image = $request->file('avatar');
+        $new_name = time() . '-' . $image->getClientOriginalName();
+        $image->move(public_path('img/portfolio/avatar'), $new_name);
+        $data['avatar'] = $new_name;
+        $data['slug'] = str_replace(' ', '-', $request['title']);
+        $portfo = Portfolio::create($data);
+        return redirect()->route('portfolio.edit', $portfo);
     }
 
     /**
@@ -68,7 +73,7 @@ class PortfolioController extends Controller
      */
     public function edit($id)
     {
-        $portfo=Portfolio::find($id);
+        $portfo = Portfolio::find($id);
         return view('admin.portfo.edit', compact('portfo'));
     }
 
@@ -81,14 +86,19 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=$request->validate([
+        $data = $request->validate([
             'title' => 'required',
             'client' => 'required',
+            'avatar' => 'required',
             'url' => 'required|url',
             'body' => 'required',
         ]);
-        $data['slug']=str_replace(' ', '-' ,$request['title']);
-        $portfo=Portfolio::find($id)->update($data);
+        $image = $request->file('avatar');
+        $new_name = time() . '-' . $image->getClientOriginalName();
+        $image->move(public_path('img/portfolio/avatar'), $new_name);
+        $data['slug'] = str_replace(' ', '-', $request['title']);
+        $data['avatar']=$new_name;
+        $portfo = Portfolio::find($id)->update($data);
         return back();
     }
 
@@ -100,7 +110,7 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        $data=Portfolio::find($id)->delete();
+        $data = Portfolio::find($id)->delete();
         return back();
     }
 }

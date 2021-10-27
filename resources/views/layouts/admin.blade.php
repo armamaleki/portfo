@@ -164,7 +164,7 @@
                     </li>
                     <li>
                         <a href="{{route('portfolio.index')}}" class="waves-effect"><i
-                                class="fa fa-times"></i> <span> نمونه کار ها  </span>
+                                class=" zmdi zmdi-shape"></i> <span> نمونه کار ها  </span>
                         </a>
                     </li>
                     <li>
