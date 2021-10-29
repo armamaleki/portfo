@@ -23,6 +23,16 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-2 control-label">دسته بندی</label>
+                            <div class="col-md-10">
+                                <select class=" col-md-12 js-example-basic-multiple" name="category[]" multiple="multiple">
+                                    @foreach($category as $cat)
+                                        <option value="{{$cat->id}}">{{$cat->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-2 control-label">ادرس اینترنتی</label>
                             <div class="col-md-10">
                                 <input type="text" name="url" value="{{old("url")}}" class="form-control" placeholder="ادرس اینترنتی">
@@ -56,4 +66,10 @@
 
 @endsection
 
-
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+@endsection

@@ -25,6 +25,8 @@
     <link href="{{asset('assets/css/menu.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/plugins/dropzone/dropzone.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -170,6 +172,11 @@
                     <li>
                         <a href="{{route('posts.index')}}" class="waves-effect"><i
                                 class="zmdi zmdi-palette "></i> <span> نوشته ها </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('category.index')}}" class="waves-effect"><i
+                                class="zmdi zmdi-widgets "></i> <span>دسته بندی ها </span>
                         </a>
                     </li>
 
@@ -324,6 +331,7 @@
 <script src="{{asset('assets/js/jquery.app.js')}}"></script>
 <script src="{{asset('assets/plugins/tinymce/tinymce.min.js')}}"></script>
 <script src="{{asset('assets/plugins/dropzone/dropzone.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
 
@@ -398,6 +406,6 @@
 
 </script>
 
-
+@yield('js')
 </body>
 </html>

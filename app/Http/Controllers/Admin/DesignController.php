@@ -45,7 +45,7 @@ class DesignController extends Controller
             'style' => 'required',
         ]);
         $store=Design::create($data);
-        return redirect()->route('design.edit',$store);
+        return back();
     }
 
     /**

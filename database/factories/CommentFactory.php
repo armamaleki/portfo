@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class CommentFactory extends Factory
 {
@@ -21,8 +22,13 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            //
+            'title' => $this->faker->name(),
+            'email' => $this->faker->email(),
+            'body' => $this->faker->text(200),
+            'commentable_id' => 1,
+            'commentable_type' => 'App\Models\User',
         ];
     }
 }

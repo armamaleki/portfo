@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->string('email');
             $table->longText('body');
             $table->enum('status', [0,1]);
+
             $table->unsignedBigInteger('commentable_id');
             $table->string('commentable_type');
         });

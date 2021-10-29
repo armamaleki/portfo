@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('admin.portfo.create');
+        $category=Category::all();
+        return view('admin.portfo.create',compact('category'));
 
     }
 
@@ -51,6 +53,11 @@ class PortfolioController extends Controller
         $data['avatar'] = $new_name;
         $data['slug'] = str_replace(' ', '-', $request['title']);
         $portfo = Portfolio::create($data);
+
+        foreach ($request->category as  $cat) {
+            $portfo->categories()->attach($cat);
+        }
+
         return redirect()->route('portfolio.edit', $portfo);
     }
 

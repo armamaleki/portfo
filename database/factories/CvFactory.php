@@ -22,7 +22,12 @@ class CvFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->title(),
+            'company' => $this->faker->company(),
+            'body' => $this->faker->text(300),
+            'from' => $this->faker->year(2020),
+            'to' => $this->faker->year(2020),
+            'slug' => $this->faker->title(2020),
         ];
     }
 }

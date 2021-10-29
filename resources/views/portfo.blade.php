@@ -20,7 +20,7 @@
                                 <ul class="information">
                                     <li><span class="title">نام همکار :</span> {!! $portfo->client !!}</li>
                                     <li><span class="title">سایت:</span> {!! $portfo->url !!}</li>
-                                    <li><span class="title">دسته بندی:</span> web, creative, photography</li>
+                                    <li><span class="title">دسته بندی:</span> @foreach($portfo->categories as $cat) {{$cat->title}} @endforeach</li>
                                 </ul>
                                 @foreach($portfo->galleries as $port)
                                     <figure class="mt-30"><img style="width: 50%;" class="figure-img img-fluid rounded" src="{{asset('img/portfolio/320')}}/{{$port->file}}" alt="{{$portfo->url}}">

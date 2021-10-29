@@ -20,6 +20,13 @@ class Post extends Model
         'title',
         'body',
         'slug',
+        'avatar',
+        'status',
         'user_id',
         ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

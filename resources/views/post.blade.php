@@ -5,7 +5,7 @@
     <div class="preloader">
         <div class="loader">
             <!--Your Name-->
-            <h4>dsds</h4>
+            <h4>{{cache()->get('user')->name}}-{{cache()->get('user')->lastname}}</h4>
             <span></span>
             <span></span>
             <span></span>
@@ -35,7 +35,7 @@
                     <div class="image-container">
                         <h2 class="header-name"></h2>
 
-                        <img src="{{asset('img/profile-img.jpg')}}" alt="profile-pic">
+                        <img src="{{asset('assets/img/profile')}}/{{cache()->get('user')->avatar}}" alt="profile-pic">
                     </div>
 
                     <!--Nav Menus-->
@@ -54,6 +54,10 @@
                             </li>
                             <li><a href="{{route('index_view')}}#contact" class="pt-link"><span class="nav-menu-icon"><i
                                             class="lnr lnr-envelope"></i></span>تماس</a></li>
+                            @if(auth()->check() && auth()->user()->is_admin ==1)
+                                <li><a href="{{route('index')}}" class="pt-link"><span class="nav-menu-icon"><i
+                                                class="lnr lnr-envelope"></i></span>پنل ادمین</a></li>
+                            @endif
                         </ul>
                     </nav>
 
@@ -61,11 +65,15 @@
                     <div class="nav-footer">
                         <!--Social Links-->
                         <ul class="social">
-                            <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-dribbble-square"></i></a></li>
-                            <li><a href="#"><i class="fab fa-behance-square"></i></a></li>
+                            <li><a href="{{cache()->get('user')->facebook}}"><i class="fab fa-facebook-square"></i></a>
+                            </li>
+                            <li><a href="{{cache()->get('user')->twitter}}"><i class="fab fa-twitter-square"></i></a>
+                            </li>
+                            <li><a href="{{cache()->get('user')->youtube}}"><i class="fab fa-youtube-square"></i></a>
+                            </li>
+                            <li><a href="{{cache()->get('user')->instagram}}"><i
+                                        class="fab fa-instagram-square"></i></a></li>
+                            <li><a href="{{cache()->get('user')->linkedin}}"><i class="fab fa-linkedin"></i></a></li>
                         </ul>
                         <!--Copyright Text-->
                         <div class="copy">
@@ -83,51 +91,46 @@
 
             <div class="blog-page">
                 <div class="blog-image">
-                    <img src="{{asset('img/blog/blog-page-img.jpg')}}" alt="">
+                    <img style="width: 600px; height: 600px" src="{{asset('img/blog/avatar')}}/{{$post->avatar}}" alt="">
                 </div>
                 <div class="blog-container">
                     <div class="row">
 
                         <!--Blog Heading Start-->
                         <div class="blog-heading col-md-10 offset-md-2">
-                            <span class="cat">Fashion</span>
-                            <h1>{{$post->title}}</h1>
+
+                            <span class="cat">@foreach($post->categories as $cat) {{$cat->title}} @endforeach </span>
+                            <h1>{!! $post->title !!}</h1>
                             <span class="blog-date">January 20, 2018</span>
                         </div>
                         <!--Blog Heading Start-->
 
                         <!--Blog Content Start-->
                         <div class="blog-content col-md-10 offset-md-1">
-                            {{$post->body}}
+                            {!! $post->body !!}
                         </div>
                         <!--Blog Content End-->
 
                         <!--Blog Comments Start-->
-                        <div class="blog-comments col-md-8 offset-md-2">
-                            <h4 class="mb-40">Post Comments</h4>
+                        <div class="blog-comments col-md-12 offset-md-2">
+                            <h4 class="mb-40">کامنت</h4>
+                            @foreach($post->comments as $comment)
                             <ul class="comment-list">
 
                                 <li class="comment">
-
-                                    <div class="author-img">
-                                        <img src="{{asset('img/blog/img-1.jpg')}}" alt="">
-                                    </div>
-                                   @foreach($post->comments as $comment)
                                         <div class="comment-text">
                                             <h6 class="author"></h6>
-                                            <span class="date">June 10, 2018 at 5:39 am</span>
-                                            <p>Deep v cliche lomo biodiesel Neutra selfies. Shorts fixie consequat
-                                                flexitarian
-                                                four loko </p>
+                                            <span class="date">{{$comment->title}}</span>
+                                            <p>{{$comment->body}}</p>
                                         </div>
-                                   @endforeach
 
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
                         <!--Blog Comments End-->
 
-                        <div class="comment-form col-lg-8 offset-lg-2">
+                        <div class="comment-form col-lg-12 offset-lg-2">
 
                             <h4 class="mt-40 mb-40">نظر شما</h4>
 
@@ -137,7 +140,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{route('comment')}}" method="post">
+                            <form action="{{route('comment')}}" dir="rtl" method="post">
                                 @csrf
 
                                 <div class="row">
@@ -170,7 +173,7 @@
 
                                     <!--Submit Button-->
                                     <div class="col-md-12">
-                                        <button class="btn-main">Post Comment</button>
+                                        <button class="btn-main">ارسال کامنت</button>
                                     </div>
 
                                 </div>

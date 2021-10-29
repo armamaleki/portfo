@@ -22,7 +22,11 @@ class ClientsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->name(),
+            'company' => $this->faker->company(),
+            'avatar' => $this->faker->image(),
+            'address' => $this->faker->address(),
+
         ];
     }
 }

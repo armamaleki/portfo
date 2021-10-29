@@ -31,39 +31,29 @@
                                             colspan="1" aria-label="Browser: activate to sort column ascending"
                                             style="width: 451px;">نام شرکت
                                         </th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                            style="width: 413px;">تصویر
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                            style="width: 413px;">ویرایش
-                                        </th>
+
 
                                     </tr>
                                     </thead>
                                     <tbody>
 
-{{--                                    @foreach($clients as $client)--}}
+                                    @foreach($category as $cat)
                                         <tr class="gradeA odd" role="row">
-                                            <td class="sorting_1">1111</td>
-                                            <td>1111111</td>
-                                            <td><img class="img-responsive img-circle" src="{{asset('assets/img/clients')}}/11111111"
-                                                     width="100" alt="{11111111"></td>
+                                            <td class="sorting_1">{{$cat->title}}</td>
                                             <td class="actions">
-                                                <a href="111111111"
+                                                <a href="{{route('category.edit',$cat->id)}}"
                                                    class="on-default edit-row"><i
                                                         class="fa-solid fa-pen"></i></a>
-                                                <a onclick="getElementById('servise-delete-1111111').submit()"
+                                                <a onclick="getElementById('cat-id-{{$cat->id}}').submit()"
                                                    class="on-default remove-row"><i class="fa-solid fa-trash-can-list"></i></a>
-                                                <form method="post" action="111111"
-                                                      id="servise-delete-1111">
+                                                <form method="post" action="{{route('category.destroy',$cat->id)}}"
+                                                      id="cat-id-{{$cat->id}}">
                                                     @csrf
                                                     @method('delete')
                                                 </form>
                                             </td>
                                         </tr>
-{{--                                    @endforeach--}}
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

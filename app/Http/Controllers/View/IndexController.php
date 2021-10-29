@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\View;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Cv;
 use App\Models\Design;
@@ -32,22 +33,25 @@ class IndexController extends Controller
     {
 
         $client = Client::paginate(15);
+
+        $category = Category::withCount(['portfolio'])->having('portfolio_count', '>=', 1)->get();
         $cv = Cv::paginate(15);
         $design = Design::paginate(15);
-        $portfolio = Portfolio::paginate(15);
-//        dd($portfolio);
+        $portfolio = Portfolio::with('categories')->paginate(15);
+
         $services = Service::with('user')->paginate(15);
-        $posts = Post::with('user')->paginate(15);
+        $posts = Post::with('user')->where('status', '1')->paginate(15);
         $user = User::latest()->first();
+        $user_comments = User::with('comments')->paginate(3);
         $title = 'تایتل صفحه ';
-        return view('index', compact('services', 'client', 'cv', 'design', 'posts', 'user', 'title', 'portfolio'));
+        return view('index', compact('services', 'category', 'client', 'cv', 'design', 'posts', 'user', 'title', 'portfolio', 'user_comments'));
     }
 
 
     public function show($id)
     {
 
-        $post = Post::with([
+        $post = Post::withCount([
             'comments' => function ($q) {
                 $q->where('status', '1')->orderBy('id', 'desc');
             }
@@ -58,7 +62,15 @@ class IndexController extends Controller
 
     public function postComment(Request $request)
     {
+        if ($request->user_id) {
+            $post = User::find($request->user_id);
+            $post->comments()->create([
+                'title' => $request->title,
+                'email' => $request->email,
+                'body' => $request->body,
 
+            ]);
+        }
         if ($request->post_id) {
             $post = Post::find($request->post_id);
             $post->comments()->create([
@@ -66,23 +78,17 @@ class IndexController extends Controller
                 'email' => $request->email,
                 'body' => $request->body,
             ]);
+            session()->flash('msg', 'کامنت با موفقیت ثبت شد');
+            return back();
         }
 
-        if ($request->user_id) {
-            $post = User::find($request->user_id);
-            $post->comments()->create([
-                'title' => $request->title,
-                'email' => $request->email,
-                'body' => $request->body,
-            ]);
-        }
         session()->flash('msg', 'کامنت با موفقیت ثبت شد');
-        return back();
+        return redirect('/#about');
     }
 
     public function portfolio($id)
     {
-        $portfo = Portfolio::with('galleries')->where('slug', $id)->firstOrFail();
+        $portfo = Portfolio::with('galleries','categories')->where('slug', $id)->firstOrFail();
         return view('portfo', compact('portfo',));
 
     }

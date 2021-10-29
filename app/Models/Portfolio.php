@@ -22,4 +22,9 @@ class Portfolio extends Model
     {
         return $this->morphMany('App\Models\Gallery', 'galleryable');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

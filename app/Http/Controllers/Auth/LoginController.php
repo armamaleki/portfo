@@ -34,7 +34,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    protected $redirectTo = 'admin';
+    protected $redirectTo = '/';
 
     public function __construct()
     {

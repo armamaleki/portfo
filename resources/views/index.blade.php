@@ -38,10 +38,11 @@
                 <!--Main Header-->
                 <div class="header-main" data-simplebar>
                     <div class="image-container">
-                        <h2 class="header-name"></h2>
+                        <h2 class="header-name">{{cache()->get('user')->name}}</h2>
 
                         <img src="{{asset('assets/img/profile')}}/{{cache()->get('user')->avatar}}" alt="profile-pic">
                     </div>
+
 
                     <!--Nav Menus-->
                     <nav class="nav-menu">
@@ -105,18 +106,16 @@
 
                 <div class="banner-content">
                     <!--Banner Text-->
-                    <h1 class="mb-20">{{cache()->get('user')->name}}<span>{{cache()->get('user')->lastname}}</span></h1>
+                    <h1 class="mb-20">{{cache()->get('user')->lastname}}<span>{{cache()->get('user')->name}}</span></h1>
 
                     <!--Animated Text-->
 
                     <p class="cd-headline clip is-full-width">
-                        <span>من یک</span>
 
                         <span class="cd-words-wrapper">
-                            @foreach($design as $key => $des)
+                            @foreach($design as  $des)
                                 <b class="is-visible">{{$des->title}}</b>
                             @endforeach
-
                         </span>
 
                     </p>
@@ -143,7 +142,7 @@
                             <!--Personal Intro-->
 
                             <h3 class="mb-20">{{cache()->get('user')->residence}}</h3>
-                            <p>{{cache()->get('user')->about}}</p>
+                            <p>{!! cache()->get('user')->about !!}</p>
 
                             <!--Signature Image-->
                             <div class="signature mt-20">
@@ -156,27 +155,36 @@
                             <div class="about-info">
                                 <h3 class="mb-20">اطلاعات فردی</h3>
                                 <ul>
-                                    <li><span class="title">نام</span><span
-                                            class="value">{{cache()->get('user')->name}}</span></li>
+                                    <li>
+                                        <span class="value">{{cache()->get('user')->name}}</span>
+                                        <span class="title">نام</span>
+                                    </li>
                                     {{--@todo--}}
-                                    <li><span class="title">سن</span><span class="value">26 Years</span></li>
+                                    <li>
+                                        <span class="value">26 </span>
+                                        <span class="title">سن</span>
+                                    </li>
 
-                                    <li><span class="title">محل سکونت</span><span
-                                            class="value">{{cache()->get('user')->residence}}</span>
+                                    <li>
+                                        <span class="value">{{cache()->get('user')->residence}}</span>
+                                        <span class="title">محل سکونت</span>
                                     </li>
-                                    <li><span class="title">آدرس</span><span
-                                            class="value">{{cache()->get('user')->address}}</span>
+                                    <li>
+                                        <span class="value">{{cache()->get('user')->address}}</span>
+                                        <span class="title">آدرس</span>
                                     </li>
-                                    <li><span class="title">ایمیل</span><span
-                                            class="value">{{cache()->get('user')->email}}</span>
+                                    <li>
+                                        <span class="value">{{cache()->get('user')->email}}</span>
+                                        <span class="title">ایمیل</span>
                                     </li>
-                                    <li><span class="title">شماره تلفن</span><span
-                                            class="value">{{cache()->get('user')->phone}}</span>
+                                    <li>
+                                        <span class="value">{{cache()->get('user')->phone}}</span>
+                                        <span class="title">شماره تلفن</span>
                                     </li>
-                                    <li><span class="title">Freelance</span><span class="value">Available</span></li>
+
                                 </ul>
                                 <div class="resume-button mt-30">
-                                    <a class="btn-main" href="#">Download Resume</a>
+                                    <a class="btn-main" href="#">دانلود رزومه</a>
                                 </div>
                             </div>
                         </div>
@@ -237,67 +245,37 @@
                                 <h3>نظر کاربران</h3>
                             </div>
                             <div class="owl-carousel owl-theme">
+                            @foreach($user_comments as $user_comment)
 
                                 <!--Testimonail Item-->
-                                <div class="testimonial-item">
-                                    <div class="testimonial-content">
-                                        <p>Ipsum ab necessitatibus numquam vitae quis. Nobis nostrum deserunt suscipit
-                                            eos fugit. Consectetur dolorum temporibus facilis impedit exercitationem
-                                            dignissimos.</p>
-                                    </div>
-                                    <div class="testimonial-meta">
-                                        <img src="img/testimonials/author-1.jpg" alt="">
-                                        <div class="meta-info">
-                                            <h4>Kate Fox</h4>
-                                            <p>Digital Marketing Executive</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @foreach($user_comment->comments as $users)
+                                        <div class="testimonial-item">
+                                            <div class="testimonial-content">
+                                                <p>{{$users->body}}</p>
+                                            </div>
+                                            <div class="testimonial-meta">
 
-                                <!--Testimonail Item-->
-                                <div class="testimonial-item">
-                                    <div class="testimonial-content">
-                                        <p>Ipsum ab necessitatibus numquam vitae quis. Nobis nostrum deserunt suscipit
-                                            eos fugit. Consectetur dolorum temporibus facilis impedit exercitationem
-                                            dignissimos.</p>
-                                    </div>
-                                    <div class="testimonial-meta">
-                                        <img src="img/testimonials/author-2.jpg" alt="">
-                                        <div class="meta-info">
-                                            <h4>Emma Jones</h4>
-                                            <p>Creative Director</p>
+                                                <div class="meta-info">
+                                                    <h4>{{$user_comment->email}}</h4>
+                                                    <p>{{$users->title}}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <!--Testimonail Item-->
-                                <div class="testimonial-item">
-                                    <div class="testimonial-content">
-                                        <p>Ipsum ab necessitatibus numquam vitae quis. Nobis nostrum deserunt suscipit
-                                            eos fugit. Consectetur dolorum temporibus facilis impedit exercitationem
-                                            dignissimos.</p>
-                                    </div>
-                                    <div class="testimonial-meta">
-                                        <img src="img/testimonials/author-3.jpg" alt="">
-                                        <div class="meta-info">
-                                            <h4>Jack Smith</h4>
-                                            <p>Marketing Director</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endforeach
 
                             </div>
                         </div>
                         <!--Testimonials Row End-->
-                        <div class="comment-form col-lg-8 offset-lg-2">
+                        <div class="comment-form col-lg-12 offset-lg-12">
 
-                            <h4 class=" mt-40 mb-40">کامنت بزارین</h4>
+                            <h4 class=" mt-40 mb-40">ارسال نظر </h4>
                             @if(session()->has('msg'))
                                 <div class="alert alert-info">
                                     {{ Session::get('msg') }}
                                 </div>
                             @endif
-                            <form action="{{route('comment')}}" method="post">
+                            <form dir="rtl" action="{{route('comment')}}" method="post">
                                 @csrf
 
                                 <div class="row">
@@ -428,23 +406,24 @@
                         <div class="col-md-12 portfolio-filter text-center">
                             <ul>
                                 <li class="active" data-filter="*">All</li>
-                                <li data-filter=".brand">Brand</li>
-                                <li data-filter=".design">Design</li>
-                                <li data-filter=".graphic">Graphic</li>
+                                @foreach($category as $cat)
+                                    <li data-filter=".cat-{{$cat->id}}">{{$cat->title}}</li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
 
                     <!--Portfolio Items-->
                     <div class="row portfolio-items mb-50">
-                    @foreach($portfolio as $port)
-
+                        @foreach($portfolio as $port)
 
                         <!--Portfolio Item-->
-                            <div class="item col-lg-4 col-sm-6 ">
+                            <div class="@foreach($port->categories as $cat)
+                                cat-{{$cat->id}}
+                                @endforeach item col-lg-4 col-sm-6 ">
                                 <a class="ajax-link" href="{{route('portfolio_view',$port->slug)}}">
                                     <figure>
-                                        <img src="{{asset('img/portfolio/avatar')}}/{{$port->avatar}}"
+                                        <img src="{{asset('img/portfolio/avatar')}}/{{($port->avatar)}}"
                                              alt="">
                                         <figcaption>
                                             <h4>{{$port->title}}</h4>
@@ -467,7 +446,7 @@
                     <!--Page Heading-->
                     <div class="page-heading">
                         <span class="icon"><i class="lnr lnr-book"></i></span>
-                        <h2>My Blogs.</h2>
+                        <h2>پست ها </h2>
                     </div>
 
                     <div class="row blogs-masonry">
@@ -477,12 +456,12 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="{{route('show',$post->slug)}}" class="blog-item">
                                     <div class="blog-image">
-                                        <img src="" alt="#">
+                                        <img src="{{asset('img/blog/avatar')}}/{{$post->avatar}}" alt="">
                                     </div>
                                     <div class="blog-content">
-                                        <span class="cat">{{$post->title}}</span>
-                                        <h4 class="blog-title">Top Beaches in the world</h4>
-                                        <div class="blog-date">June 24, 2018</div>
+                                        <span class="cat">{{$post->user->name}}-{{$post->user->lastname}}</span>
+                                        <h4 class="blog-title">{{$post->title}}</h4>
+                                        <div class="blog-date">{{$post->created_at}}</div>
                                     </div>
                                 </a>
                             </div>
@@ -493,7 +472,6 @@
             </section>
             <!--Blog Section End-->
 
-
             <!--Contact Section Start-->
             <section id="contact" class="contact-section pt-page">
                 <div class="section-container">
@@ -501,14 +479,14 @@
                     <!--Page Heading-->
                     <div class="page-heading">
                         <span class="icon"><i class="lnr lnr-envelope"></i></span>
-                        <h2>Contact Me.</h2>
+                        <h2>تماس با ما</h2>
                     </div>
 
                     <!--Form Row-->
                     <div class="row mb-70">
-                        <div class="col-lg-8  offset-lg-2">
+                        <div class="col-lg-12  offset-lg-2">
                             <div class="subheading">
-                                <h3>Let's Talk</h3>
+                                <h3>ارسال ایمیل</h3>
                             </div>
 
                             <!--Form Start-->
@@ -521,7 +499,7 @@
                                             <span class="input">
                                                 <input class="input__field cf-validate" type="text" id="cf-name"
                                                        name="name"/>
-                                                <label class="input__label" for="cf-name">Name</label>
+                                                <label class="input__label" for="cf-name">نام</label>
                                             </span>
                                     </div>
 
@@ -530,7 +508,7 @@
                                             <span class="input">
                                                 <input class="input__field cf-validate" type="text" id="cf-email"
                                                        name="email"/>
-                                                <label class="input__label" for="cf-email">Email</label>
+                                                <label class="input__label" for="cf-email">ادرس ایمیل</label>
                                             </span>
                                     </div>
 
@@ -540,7 +518,7 @@
                                                 <textarea class="input__field cf-validate" id="cf-message"
                                                           name="message" rows="5"></textarea>
                                                 <label class="input__label"
-                                                       for="cf-message">How can we help you?</label>
+                                                       for="cf-message">چه طور میتونم کمکتون کنم؟</label>
                                             </span>
                                     </div>
 
@@ -548,7 +526,7 @@
 
                                     <!--Submit Button-->
                                     <div class="col-md-12 text-center">
-                                        <button id="cf-submit" class="btn-main">Send Message</button>
+                                        <button id="cf-submit" class="btn-main">ارسال پیام</button>
                                     </div>
 
 
@@ -565,19 +543,19 @@
                         <!--Contact Info Item-->
                         <div class="col-md-4 info-item">
                             <span class="icon"><i class="fas fa-paper-plane"></i></span>
-                            <h5><a href="mailto:example@example.com">example@example.com</a></h5>
+                            <h5><a href="mailto:example@example.com">{{cache()->get('user')->email}}</a></h5>
                         </div>
 
                         <!--Contact Info Item-->
                         <div class="col-md-4 info-item">
                             <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                            <h5>123 Lorem Ipsum, USA</h5>
+                            <h5>{{cache()->get('user')->address}}</h5>
                         </div>
 
                         <!--Contact Info Item-->
                         <div class="col-md-4 info-item">
                             <span class="icon"><i class="fas fa-phone"></i></span>
-                            <h5>(+1) 123 456 7890</h5>
+                            <h5>{{cache()->get('user')->phone}}</h5>
                         </div>
 
                     </div>
@@ -586,7 +564,7 @@
                 </div>
                 <!--Google Map Start-->
                 <div class="google-map">
-                    <div id="map" data-latitude="-37.817214" data-longitude="144.955925" data-zoom="15"></div>
+                    <div id="map" data-latitude="35.658675" data-longitude="51.487381" data-zoom="15"></div>
                 </div>
                 <!--Google Map End-->
             </section>

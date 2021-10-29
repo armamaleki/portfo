@@ -56,15 +56,14 @@ class GalleryController extends Controller
             ]);
             $file = $request->file('file');
             $img = Image::make($request->file('file')->getRealPath());
-//            dd($img);
             $new_name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path('img/portfolio'), $new_name);
             $portfo->galleries()->create([
                 'file' => $new_name
             ]);
 
-            $img->resize(320, 240);
-            $img->save(public_path('img/portfolio/320') . "/" . $new_name);
+            $img->resize(200,200);
+            $img->save(public_path('img/portfolio/320') . "/" . $new_name,80);
 
         }
 

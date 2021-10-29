@@ -64,9 +64,14 @@
                                                 </td>
 
                                                 <td class="actions">
-                                                    <a href="#" class="on-default edit-row"><i class="fa-solid fa-pen"></i></a>
-                                                    <a href="#" class="on-default remove-row"><i
+                                                    <a href="{{route('posts.edit',$post->id)}}" class="on-default edit-row"><i class="fa-solid fa-pen"></i></a>
+
+                                                    <a onclick="getElementById('post-id-{{$post->id}}').submit()" class="on-default remove-row"><i
                                                             class="fa-solid fa-trash-can-list"></i></a>
+                                                    <form method="post" action="{{route('posts.destroy',$post->id)}}" id="post-id-{{$post->id}}">
+                                                        @method('delete')
+                                                        @csrf
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

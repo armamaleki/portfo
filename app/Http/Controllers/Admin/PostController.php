@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,7 +38,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+
+        $category=Category::all();
+        return view('admin.posts.create',compact('category'));
     }
 
     /**
@@ -48,13 +51,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $data=$request->validate([
             'title'=>'required',
             'body'=>'required',
+            'avatar'=>'required',
         ]);
+
+        $image=$request->file('avatar');
+        $new_name=time().'-'.$image->getClientOriginalName();
+        $image->move(public_path('img/blog/avatar'),$new_name);
+        $data['avatar']=$new_name;
         $data['user_id'] = Auth::user()->id;
         $data['slug']=str_replace(' ', '-' ,$request['title']);
-        $data=Post::create($data);
+
+        $post=Post::create($data);
+        foreach ($request->category as  $cat) {
+            $post->categories()->attach($cat);
+        }
         return back();
 
     }
@@ -78,7 +92,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.posts.edit');
+        $post=Post::with('categories')->find($id);
+//        dd($post);
+        return view('admin.posts.edit', compact('post'));
 
     }
 
@@ -91,7 +107,22 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->validate([
+            'title'=>'required',
+            'body'=>'required',
+            'avatar'=>'required',
+            'status'=>'required',
+        ]);
+
+        $image=$request->file('avatar');
+        $new_name=time().'-'.$image->getClientOriginalName();
+        $image->move(public_path('img/blog/avatar'),$new_name);
+        $data['avatar']=$new_name;
+        $data['user_id'] = Auth::user()->id;
+        $data['slug']=str_replace(' ', '-' ,$request['title']);
+
+        $post=Post::find($id)->update($data);
+        return back();
     }
 
     /**
@@ -102,6 +133,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post=Post::find($id)->delete();
+        return back();
     }
 }
