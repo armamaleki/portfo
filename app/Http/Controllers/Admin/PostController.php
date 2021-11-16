@@ -93,8 +93,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post=Post::with('categories')->find($id);
-//        dd($post);
-        return view('admin.posts.edit', compact('post'));
+        $category=Category::all();
+        return view('admin.posts.edit', compact('post','category'));
 
     }
 
@@ -107,6 +107,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $data=$request->validate([
             'title'=>'required',
             'body'=>'required',
@@ -121,7 +122,12 @@ class PostController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['slug']=str_replace(' ', '-' ,$request['title']);
 
-        $post=Post::find($id)->update($data);
+        $post=Post::find($id);
+        $post->update($data);
+
+        foreach ($request->category as  $cat) {
+            $post->categories()->sync($cat);
+        }
         return back();
     }
 

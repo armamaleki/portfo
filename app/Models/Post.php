@@ -29,4 +29,8 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+    public function galleries()
+    {
+        return $this->morphMany('App\Models\Gallery', 'galleryable');
+    }
 }

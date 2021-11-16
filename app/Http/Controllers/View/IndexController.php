@@ -37,14 +37,12 @@ class IndexController extends Controller
         $category = Category::withCount(['portfolio'])->having('portfolio_count', '>=', 1)->get();
         $cv = Cv::paginate(15);
         $design = Design::paginate(15);
-        $portfolio = Portfolio::with('categories')->paginate(15);
-
+        $portfolio = Portfolio::with('categories')->where('status', '1')->paginate(15);
         $services = Service::with('user')->paginate(15);
         $posts = Post::with('user')->where('status', '1')->paginate(15);
         $user = User::latest()->first();
         $user_comments = User::with('comments')->paginate(3);
-        $title = 'تایتل صفحه ';
-        return view('index', compact('services', 'category', 'client', 'cv', 'design', 'posts', 'user', 'title', 'portfolio', 'user_comments'));
+        return view('index', compact('services', 'category', 'client', 'cv', 'design', 'posts', 'user', 'portfolio', 'user_comments'));
     }
 
 
@@ -52,6 +50,7 @@ class IndexController extends Controller
     {
 
         $post = Post::withCount([
+            'galleries',
             'comments' => function ($q) {
                 $q->where('status', '1')->orderBy('id', 'desc');
             }

@@ -81,7 +81,9 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         $portfo = Portfolio::find($id);
-        return view('admin.portfo.edit', compact('portfo'));
+        $category=Category::all();
+
+        return view('admin.portfo.edit', compact('portfo','category'));
     }
 
     /**
@@ -96,9 +98,10 @@ class PortfolioController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'client' => 'required',
-            'avatar' => 'required',
+            'avatar' => 'nullable',
             'url' => 'required|url',
             'body' => 'required',
+            'status' => 'required',
         ]);
         $image = $request->file('avatar');
         $new_name = time() . '-' . $image->getClientOriginalName();

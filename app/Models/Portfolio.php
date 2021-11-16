@@ -16,6 +16,7 @@ class Portfolio extends Model
         'avatar',
         'body',
         'slug',
+        'status',
     ];
 
     public function galleries()

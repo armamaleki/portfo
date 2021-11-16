@@ -41,7 +41,8 @@
                     <!--Nav Menus-->
                     <nav class="nav-menu">
                         <ul>
-                            <li><a href="{{route('index_view')}}#home" class="pt-link active"><span class="nav-menu-icon"><i
+                            <li><a href="{{route('index_view')}}#home" class="pt-link active"><span
+                                        class="nav-menu-icon"><i
                                             class="lnr lnr-home"></i></span>خانه </a></li>
                             <li><a href="{{route('index_view')}}#about" class="pt-link"><span class="nav-menu-icon"><i
                                             class="lnr lnr-user"></i></span>درباره من</a></li>
@@ -91,7 +92,8 @@
 
             <div class="blog-page">
                 <div class="blog-image">
-                    <img style="width: 600px; height: 600px" src="{{asset('img/blog/avatar')}}/{{$post->avatar}}" alt="">
+                    <img style="width: 600px; height: 600px" src="{{asset('img/blog/avatar')}}/{{$post->avatar}}"
+                         alt="">
                 </div>
                 <div class="blog-container">
                     <div class="row">
@@ -109,24 +111,31 @@
                         <div class="blog-content col-md-10 offset-md-1">
                             {!! $post->body !!}
                         </div>
-                        <!--Blog Content End-->
+                        @foreach($post->galleries as $port)
+                            <figure class="mt-30"><img  class="figure-img img-fluid rounded"
+                                                       src="{{asset('img/portfolio/320')}}/{{$port->file}}"
+                                                       alt="{{$post->title}}">
+                            </figure>
+                    @endforeach
+
+                    <!--Blog Content End-->
 
                         <!--Blog Comments Start-->
                         <div class="blog-comments col-md-12 offset-md-2">
                             <h4 class="mb-40">کامنت</h4>
                             @foreach($post->comments as $comment)
-                            <ul class="comment-list">
+                                <ul class="comment-list">
 
-                                <li class="comment">
+                                    <li class="comment">
                                         <div class="comment-text">
                                             <h6 class="author"></h6>
                                             <span class="date">{{$comment->title}}</span>
                                             <p>{{$comment->body}}</p>
                                         </div>
 
-                                </li>
-                                @endforeach
-                            </ul>
+                                    </li>
+                                    @endforeach
+                                </ul>
                         </div>
                         <!--Blog Comments End-->
 

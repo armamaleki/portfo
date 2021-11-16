@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('title')
-    {{$title}}
+    {{cache()->get('user')->name}}-{{cache()->get('user')->lastname}}
 @endsection
 
 
@@ -377,7 +377,7 @@
                                 <div class="skill-item">
                                     <h4 class="progress-title">{{$des->title}}</h4>
                                     <div class="progress">
-                                        <div class="progress-bar" data-progress-value="{{$des->style}}">
+                                        <div class="progress-bar progress-bar-striped " role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width: {{$des->style}}%" >
                                             <div class="progress-value">91%</div>
                                         </div>
                                     </div>
@@ -398,14 +398,14 @@
                     <!--Page Heading-->
                     <div class="page-heading">
                         <span class="icon"><i class="lnr lnr-briefcase"></i></span>
-                        <h2>Portfolio.</h2>
+                        <h2>نمونه کارها</h2>
                     </div>
 
                     <div class="row">
                         <!--Portfolio Filter-->
                         <div class="col-md-12 portfolio-filter text-center">
                             <ul>
-                                <li class="active" data-filter="*">All</li>
+                                <li class="active" data-filter="*">همه نمونه کارها </li>
                                 @foreach($category as $cat)
                                     <li data-filter=".cat-{{$cat->id}}">{{$cat->title}}</li>
                                 @endforeach
@@ -490,48 +490,55 @@
                             </div>
 
                             <!--Form Start-->
-                            <form id="contact-form" method="post" action="mail.php">
-                                <div class="row">
+                            <div class="comment-form col-lg-12 offset-lg-12">
 
+                                <h4 class=" mt-40 mb-40">ارسال نظر </h4>
+                                @if(session()->has('msg'))
+                                    <div class="alert alert-info">
+                                        {{ Session::get('msg') }}
+                                    </div>
+                                @endif
+                                <form dir="auto" action="{{route('comment')}}" method="post">
+                                    @csrf
 
-                                    <!--Name Field-->
-                                    <div class="col-md-6 mb-50">
+                                    <div class="row">
+                                        <!--Name Field-->
+                                        <div class="col-md-6 mb-50">
                                             <span class="input">
-                                                <input class="input__field cf-validate" type="text" id="cf-name"
-                                                       name="name"/>
-                                                <label class="input__label" for="cf-name">نام</label>
+                                                <input class="input__field" type="text" id="name" name="title"
+                                                       required/>
+                                                <label class="input__label" for="name">موضوع </label>
                                             </span>
-                                    </div>
+                                        </div>
 
-                                    <!--Email Field-->
-                                    <div class="col-md-6 mb-50">
+                                        <!--Email Field-->
+                                        <div class="col-md-6 mb-50">
                                             <span class="input">
-                                                <input class="input__field cf-validate" type="text" id="cf-email"
-                                                       name="email"/>
-                                                <label class="input__label" for="cf-email">ادرس ایمیل</label>
+                                                <input class="input__field" type="text" id="email" name="email"
+                                                       required/>
+                                                <label class="input__label" for="email">ایمیل</label>
                                             </span>
-                                    </div>
+                                        </div>
 
-                                    <!--Message Box-->
-                                    <div class="col-md-12 mb-30">
+                                        <!--Message Box-->
+                                        <div class="col-md-12 mb-30">
                                             <span class="input">
-                                                <textarea class="input__field cf-validate" id="cf-message"
-                                                          name="message" rows="5"></textarea>
-                                                <label class="input__label"
-                                                       for="cf-message">چه طور میتونم کمکتون کنم؟</label>
+                                                <textarea class="input__field" id="message" name="body" rows="5"
+                                                          required></textarea>
+                                                <label class="input__label" for="message">ارسال نظر</label>
                                             </span>
+                                        </div>
+                                        <input type="hidden" value="{{$user->id}}" name="user_id">
+                                        <!--Submit Button-->
+                                        <div class="col-md-12">
+                                            <button class="btn-main " id="cf-submit">ارسال نظر</button>
+                                        </div>
+
                                     </div>
 
-                                    <div class="alert-container col-md-12"></div>
+                                </form>
 
-                                    <!--Submit Button-->
-                                    <div class="col-md-12 text-center">
-                                        <button id="cf-submit" class="btn-main">ارسال پیام</button>
-                                    </div>
-
-
-                                </div>
-                            </form>
+                            </div>
                             <!--Form End-->
 
                         </div>
@@ -543,7 +550,7 @@
                         <!--Contact Info Item-->
                         <div class="col-md-4 info-item">
                             <span class="icon"><i class="fas fa-paper-plane"></i></span>
-                            <h5><a href="mailto:example@example.com">{{cache()->get('user')->email}}</a></h5>
+                            <h5><a href="mailto:{{cache()->get('user')->email}}"></a></h5>
                         </div>
 
                         <!--Contact Info Item-->
@@ -555,7 +562,7 @@
                         <!--Contact Info Item-->
                         <div class="col-md-4 info-item">
                             <span class="icon"><i class="fas fa-phone"></i></span>
-                            <h5>{{cache()->get('user')->phone}}</h5>
+                            <a href="tel:{{cache()->get('user')->phone}}"><h5>{{cache()->get('user')->phone}}</h5> </a>
                         </div>
 
                     </div>

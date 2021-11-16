@@ -35,6 +35,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::resource('/portfolio','PortfolioController');
     Route::resource('/gallery','GalleryController');
     Route::resource('/category','CategoryController');
+    Route::post('ckeditor_image_upload','ImageController@store')->name('image_upload');
 });
 
 Route::namespace('View')->group(function (){

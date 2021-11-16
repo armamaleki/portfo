@@ -329,7 +329,10 @@
 <!-- App js -->
 <script src="{{asset('assets/js/jquery.core.js')}}"></script>
 <script src="{{asset('assets/js/jquery.app.js')}}"></script>
-<script src="{{asset('assets/plugins/tinymce/tinymce.min.js')}}"></script>
+<script src="{{asset('assets/plugins/ckeditor5/ckeditor.js')}}"></script>
+<script src="{{asset('assets/plugins/ckeditor5/ckeditor.js.map')}}"></script>
+{{--<script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>--}}
+
 <script src="{{asset('assets/plugins/dropzone/dropzone.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 

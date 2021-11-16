@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Gallery;
 use App\Models\Portfolio;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -66,26 +67,25 @@ class GalleryController extends Controller
             $img->save(public_path('img/portfolio/320') . "/" . $new_name,80);
 
         }
-
-        if ($request->client_id) {
-            $client = Client::find($request->client_id);
-
-            $validated = $request->validate([
+        if ($request->post_id) {
+            $portfo = Post::find($request->post_id);
+            $data = $request->validate([
                 'file' => 'required',
             ]);
-
-
-            $fileName = $this->uploadImage($request->file('file'));
-
-            $client->galleries()->create([
-                'file' => $fileName
+            $file = $request->file('file');
+            $img = Image::make($request->file('file')->getRealPath());
+            $new_name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path('img/blog'), $new_name);
+            $portfo->galleries()->create([
+                'file' => $new_name
             ]);
 
-            return response()->json([
-                'msg' => 'عکس با موفقیت اپلود شد'
-            ]);
+            $img->resize(200, 200);
+            $img->save(public_path('img/portfolio/320') . "/" . $new_name, 80);
 
         }
+
+
     }
 
     /**
